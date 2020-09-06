@@ -91,3 +91,43 @@ const MyHttpSever={}
   # 实现登录提示消息弹出
   <!-- elementui为我们提供好的一个方法 -->
   this.$message.warning(msg);
+
+
+  # 二. 跳转home组件
+  1- 在login组件的请求中用js编程时导航寻找home组件
+      **  this.$router.push({name:'home'})  **实现跳转
+  2- 在组件中创建home组件
+  3- 配置路由router => "导入","配置"
+  4- 由于都展示在app.vue跟组件中,所以视图定义不用管
+    App.vue => <router-view />
+
+
+# 简化异步操作代码async+await
+  <!-- 让异步代码看起来更像同步代码一样 -->
+  <!-- 找到异步操作有结果的代码,前面加上await,同时接收异步操作的结果res -->
+  // 登录请求
+    async handleLogin() {
+      // 希望让异步操作看起来像同步代码一样
+      // 此时用到ES7语法提供的  async + await
+        const res = await this.$http.post("login", this.formdata)
+        // .then((res) => {  //不要
+        console.log(res);
+
+        // 获取想要的数据
+        const {
+          data,
+          meta: { msg, status },
+        } = res.data;
+        if (status === 200) {
+          // 成功，登录跳转home，提示登录成功
+          // 跳转home,去找组件,js编程时导航
+          this.$router.push({name:'home'})
+          // 去创建home组件
+          // 实现提示弹窗
+          this.$message.success(msg);
+        }else{
+          // 失败 ,提示消息
+          this.$message.warning(msg);
+        }
+
+
