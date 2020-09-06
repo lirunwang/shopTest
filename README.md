@@ -134,3 +134,9 @@ const MyHttpSever={}
 <!-- 1 -目的:防止用户没登陆,直接通过url直接去访问页面 -->
 <!-- 2 -在登录成功时,保存后台返回给用户的token值 -->
 localStorage.setItem('token',data.token)   //字符串token
+
+
+# 三.home页面布局
+1 页面布局引用elemenui的页面容器
+2 头部样式调整
+ layout,el-row行el-col列
