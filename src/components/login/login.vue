@@ -3,10 +3,10 @@
     <el-form class="login-form" label-position="top" label-width="80px" :model="formdata">
       <h2>华超电子后台登录系统</h2>
       <el-form-item label="用户名">
-        <el-input v-model="formdata.username"></el-input>
+        <el-input v-model="formdata.username" required="required"></el-input>
       </el-form-item>
       <el-form-item label="密码">
-        <el-input v-model="formdata.password"></el-input>
+        <el-input v-model="formdata.password" required="required"></el-input>
       </el-form-item>
       <el-button type="primary" class="login-btn" @click.prevent="handleLogin()">登录</el-button>
     </el-form>
@@ -30,7 +30,7 @@ export default {
       // 此时用到ES7语法提供的  async + await
         const res = await this.$http.post("login", this.formdata)
         // .then((res) => {  //不要
-        console.log(res);
+        // console.log(res);
 
         // 获取想要的数据
         const {

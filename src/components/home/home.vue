@@ -123,7 +123,7 @@ export default {
   beforeCreate() {
     // 获取token
     const token = localStorage.getItem("token");
-    console.log(token);
+    // console.log(token);
     if (!token) {
       this.$router.push({ name: "login" });
     } else {

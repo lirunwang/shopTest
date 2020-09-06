@@ -195,3 +195,74 @@ methods: {
   2-面包屑
   3-inputSearch + ico + button
   4-调整样式
+
+  # users组件引入表格部分
+  1 <el-table
+    :data="tableData"    //data 数据源[]
+    style="width: 100%">
+    <el-table-column(label表头/prop="数据")>字符串数据
+  2 按照效果,调整了表头的数量和label
+  3 type="index" ,该列的每个单元格的内容从1开始的序号
+
+  # 获取users表格数据
+    接口文档中，由于请求API进行了权限认证，所以要设置请求头的发送信息
+    获取到token
+    const AUTH_TOKEN = localStorage.getItem("token")
+    <!-- 设置请求头 -->
+    this.$http.defaults.headers.common['Authorization'] = AUTH_TOKEN;
+    创建钩子函数，即获取到初始化的数据
+    created（）{}
+    执行获取请求
+    methods：{getUsersList(){ this.$http.get(`模板字符串最好，过长字符串会出现查询语句执行出错`)  }}
+
+    =》
+    .get(
+          `users?query=${this.query}&pagenum=${this.pagenum}&pagesize=${this.pagesize}`
+        )
+    
+    对象解构赋值，const { meta:{status,msg} ,data:{users,tatal}} = res.data;
+    给单元格传输真实数据，prop="username"……
+
+# 全局过滤器处理日期格式
+<!-- 安装全局过滤器fmtdate -->
+1--导入moment
+import moment from 'moment'
+2-创建全局过滤器，在new vue({})  之前
+    Vue.filter('fmtdate', (v) => {
+        return moment(v).format('YYYY-MM-DD')
+     })
+
+<!-- 如果单元格想要渲染一个不是字符串（文本）的内容，那么需要用到插值表达式 -->
+<!-- 要用插值表达式，需要为内容的外层包裹一个小容器template -->
+<!-- 此时相当于组件传值，则给template提供了一个slot-scope属性用来追踪上级数据源 -->
+<!-- array.row代表数组中每个对象，自带属性，那么用array.row.需要的值createtime进行格式处理 -->
+<!-- 原来通过prop绑定的值作废，删除此属性 -->
+<el-table-column label="创建时间">
+        <!-- template内部要用数据，设置slot-scope属性 -->
+        <!-- 该属性的值是要用数据的数据源userslist -->
+        <!-- slot-scope的值userslist其实就是el-table绑定的数据userslist -->
+        <!-- userslist.row数组中的每个对象，usersList.row自带属性 -->
+        <!-- <template slot-scope="usersList"> -->
+          <!-- slot是自动去找上一级最外层table的数据源，所以值也可以是一个任意的字符代替 -->
+          <template slot-scope="scope">
+          {{scope.row.create_time|fmtdate}}
+        </template>
+      </el-table-column>
+
+# 用户状态的开关
+1、引入开关el-switch
+2、此时这个开关放在这个element单元格标签里并不合适，因为不是字符串或文本
+3、那么就用到一个小容器给包裹起来，template
+4、和过滤器处理时间格式一样的原理，需要给template添加一个属性slot-scope
+    实现组件间的传值
+5、给开关的绑定值改写成scope.row.mg_state
+<!-- 此时就OK了，可以任意切换 -->
+
+# 操作的图标
+1、容器里面不是字符串，则用template slot-scope="scope"
+2、el-button
+3、size="mini"  是否朴素 plain
+
+
+
+    
