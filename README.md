@@ -140,3 +140,11 @@ localStorage.setItem('token',data.token)   //字符串token
 1 页面布局引用elemenui的页面容器
 2 头部样式调整
  layout,el-row行el-col列
+
+ # 首页侧边导航
+    >el-menu
+    >router 开启路由模式,true index值==path值
+    unique-opened是否之保持一个子菜单的展开
+
+    >调整侧边导航
+    index值 不能一样,不然全部为一个的导航效果
