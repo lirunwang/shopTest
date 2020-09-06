@@ -181,7 +181,7 @@ methods: {
   },
 
 
-  # 四.用户管理-用户列表-新建组件-配置路由
+  # 四.用户管理-用户列表-新建users组件-配置路由
   1-home组件开启了路由模式,index的值->path值(elementui封装提供的功能)
   2-Attribut的router写在导航的父容器身上,开启路由功能
     :router="true"
@@ -190,4 +190,8 @@ methods: {
   4-配置路由router/index.js,
   5-user路由设置在home路由的子路由children中,users在heme中,所以现有home后有users
 
-  
+  # 五.users组件
+  1-"el-card" 卡片,小容器
+  2-面包屑
+  3-inputSearch + ico + button
+  4-调整样式
