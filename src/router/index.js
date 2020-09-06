@@ -10,7 +10,7 @@ Vue.use(Router)
 
 export default new Router({
   routes: [{
-    name: 'Login',
+    name: 'login',
     path: '/login',
     component: Login
 

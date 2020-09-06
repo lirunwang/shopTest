@@ -19,7 +19,7 @@
       <el-aside width="200px" class="aside">
         <!-- 侧边栏导航el-menu  -->
         <el-menu :unique-opened="true">
-            <!-- 1 -->
+          <!-- 1 -->
           <el-submenu index="1">
             <template slot="title">
               <i class="el-icon-user-solid"></i>
@@ -64,7 +64,6 @@
                 <i class="el-icon-location"></i>商品分类
               </el-menu-item>
             </el-menu-item-group>
-
           </el-submenu>
           <!-- 4 -->
           <el-submenu index="4">
@@ -110,7 +109,21 @@
 </template>
 
 <script>
-export default {};
+export default {
+  // 如果有token,则继续执行组件渲染加载,
+  // 如果没有,则跳转到登录
+  // 如何在组件渲染之前执行验证,那么创建vue实例是mount方法执行
+  // 所以要在new vue之前执行验证 =>beforeCreate
+  beforeCreate() {
+    // 获取token
+    const token = localStorage.getItem("token");
+    console.log(token);
+    if (!token) {
+      this.$router.push({ name: "login" });
+    } else {
+    }
+  },
+};
 </script>
 
 <style>

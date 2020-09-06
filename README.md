@@ -148,3 +148,20 @@ localStorage.setItem('token',data.token)   //字符串token
 
     >调整侧边导航
     index值 不能一样,不然全部为一个的导航效果
+
+# 用户登录-进入首页的权限认证
+<!-- if 有token,则渲染加载home组件,没有,则跳转登录 -->
+<!-- 进入home组件的token验证 -->
+  // 如果有token,则继续执行组件渲染加载,
+  // 如果没有,则跳转到登录
+  // 如何在组件渲染之前执行验证,那么创建vue实例是mount方法执行
+  // 所以要在new vue之前执行验证 =>beforeCreate
+  beforeCreate() {
+    // 获取token
+    const token = localStorage.getItem("token");
+    console.log(token);
+    if (!token) {
+      this.$router.push({ name: "login" });
+    } else {
+    }
+  },
