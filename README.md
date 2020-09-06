@@ -130,4 +130,7 @@ const MyHttpSever={}
           this.$message.warning(msg);
         }
 
-
+# 登录-保存token
+<!-- 1 -目的:防止用户没登陆,直接通过url直接去访问页面 -->
+<!-- 2 -在登录成功时,保存后台返回给用户的token值 -->
+localStorage.setItem('token',data.token)   //字符串token

@@ -38,6 +38,9 @@ export default {
           meta: { msg, status },
         } = res.data;
         if (status === 200) {
+          // 登录成功,保存token,目的为将来其他页面验证登录使用
+          // 保存到本地
+          localStorage.setItem('token',data.token)
           // 成功，登录跳转home，提示登录成功
           // 跳转home,去找组件,js编程时导航
           this.$router.push({name:'home'})
