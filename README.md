@@ -179,3 +179,15 @@ methods: {
       this.$router.push({ name: "login" });
     },
   },
+
+
+  # 四.用户管理-用户列表-新建组件-配置路由
+  1-home组件开启了路由模式,index的值->path值(elementui封装提供的功能)
+  2-Attribut的router写在导航的父容器身上,开启路由功能
+    :router="true"
+  3-设置容器 =>在main中
+  4-新建组件users
+  4-配置路由router/index.js,
+  5-user路由设置在home路由的子路由children中,users在heme中,所以现有home后有users
+
+  

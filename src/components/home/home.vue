@@ -18,7 +18,11 @@
     <el-container>
       <el-aside width="200px" class="aside">
         <!-- 侧边栏导航el-menu  -->
-        <el-menu :unique-opened="true">
+        <!-- 添加路由 -->
+        <el-menu 
+        :router="true"
+        :unique-opened="true"
+        >
           <!-- 1 -->
           <el-submenu index="1">
             <template slot="title">
@@ -26,8 +30,8 @@
               <span>用户管理</span>
             </template>
             <el-menu-item-group>
-              <el-menu-item index="1-1">
-                <i class="el-icon-location"></i>选项1
+              <el-menu-item index="users">
+                <i class="el-icon-location"></i>用户列表
               </el-menu-item>
             </el-menu-item-group>
           </el-submenu>
@@ -103,7 +107,9 @@
           </el-submenu>
         </el-menu>
       </el-aside>
-      <el-main class="main">Main</el-main>
+      <el-main class="main">
+        <router-view></router-view>
+      </el-main>
     </el-container>
   </el-container>
 </template>
