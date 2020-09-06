@@ -11,7 +11,7 @@
           <h2>华超电子科技后台管理系统</h2>
         </el-col>
         <el-col :span="2" class="loginout">
-          <div class="grid-content bg-purple">推出</div>
+          <div class="grid-content bg-purple" @click.prevent="handlesignout()">退出</div>
         </el-col>
       </el-row>
     </el-header>
@@ -122,6 +122,17 @@ export default {
       this.$router.push({ name: "login" });
     } else {
     }
+  },
+  methods: {
+    //   点击退出
+    handlesignout() {
+      //   清除token
+      localStorage.clear();
+      // 提示消息
+      this.$message.success("退出成功");
+      // 跳转登录
+      this.$router.push({ name: "login" });
+    },
   },
 };
 </script>

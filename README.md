@@ -165,3 +165,17 @@ localStorage.setItem('token',data.token)   //字符串token
     } else {
     }
   },
+
+  # 用户退出
+  >绑定一个事件方法,在方法里清除token,提示信息,跳转组件login
+methods: {
+    //   点击退出
+    handlesignout() {
+      //   清除token
+      localStorage.clear();
+      // 提示消息
+      this.$message.success("退出成功");
+      // 跳转登录
+      this.$router.push({ name: "login" });
+    },
+  },
