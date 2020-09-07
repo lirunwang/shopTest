@@ -53,7 +53,17 @@
       </el-table-column>
     </el-table>
 
-    <!-- 4 搜索 -->
+    <!-- 4 分页 -->
+    <!-- 分页要看接口是否支持分页，就是有page-size 等参数 -->
+    <el-pagination
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+      :current-page="pagenum"
+      :page-sizes="[2, 4, 6, 8]"
+      :page-size="2"
+      layout="total, sizes, prev, pager, next, jumper"
+      :total="total"
+    ></el-pagination>
   </el-card>
 </template>
 
@@ -67,7 +77,7 @@ export default {
       // 表格绑定的数据
       usersList: [],
       // 分页的数据
-      tatal: -1,
+      total: 1,
       pagenum: 1,
       pagesize: 2,
     };
@@ -76,6 +86,12 @@ export default {
     this.getUsersList();
   },
   methods: {
+    handleSizeChange(val) {
+      console.log(`每页 ${val} 条`);
+    },
+    handleCurrentChange(val) {
+      console.log(`当前页: ${val}`);
+    },
     getUsersList() {
       // query	查询参数	可以为空
       // pagenum	当前页码	不能为空
@@ -94,13 +110,13 @@ export default {
           // 通过对象解构赋值取到我们需要的值
           const {
             meta: { status, msg },
-            data: { users, tatal },
+            data: { users, total },
           } = res.data;
           if (status === 200) {
             // 给表格数据赋值
             this.usersList = users;
             // 给分页数据赋值
-            this.tatal = tatal;
+            this.tatal = total;
             // 提示
             this.$message.success(msg);
 
@@ -118,5 +134,8 @@ export default {
 <style>
 .inputSearch {
   width: 500px;
+}
+.box-card{
+  height: 100%;
 }
 </style>

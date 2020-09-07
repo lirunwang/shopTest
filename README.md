@@ -38,6 +38,8 @@ git remote add origin git@github.com:lirunwang/shopTest.git
 # 7、推送到远程仓库
 git push -u origin master（之后在推送，就直接git push）
 
+# 8、新建分支并切换
+git checkout -b 分支名
 
 
 #### 开始项目
@@ -263,6 +265,23 @@ import moment from 'moment'
 2、el-button
 3、size="mini"  是否朴素 plain
 
+# 分页功能的实现
+1、引入el-pagination
+2、方法
+@size-change="handleSizeChange" 当每页显示条数变化时 触发
+@current-change="handleCurrentChange"  当前页改变时触发 
+:current-page="currentPage4" 设置当前页是第几页
+:page-sizes="[100, 200, 300, 400]" 设置每页多少条的数据
+:page-size="100"    设置显示多少条
+:total="400"   数据总数
+3、配置数据
+    @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+      :current-page="pagenum"
+      :page-sizes="[2, 4, 6, 8]"
+      :page-size="2"
+      layout="total, sizes, prev, pager, next, jumper"
+      :total="total"
 
 
     
